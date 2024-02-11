@@ -21,16 +21,24 @@
     text-align: left;
 }
 
-#rating {
+#rating-handler {
     font-size: 18px;
     display: flex;
     font-weight: bold;
     justify-content: space-between;
     align-items: center;
+
+
+}
+
+.rating {
+    background: #ffffff;
+    border: 1px solid #808080;
+    border-radius: 4px;
 }
 
 #middle-rating {
-    color: #4cff00;
+    color: #252528;
 }
 
 #user-rating {

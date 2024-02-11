@@ -1,0 +1,7 @@
+﻿#body-wrapper {
+    display: grid;
+    grid-template-columns: 1fr, 2fr, 1fr;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}

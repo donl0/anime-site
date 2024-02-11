@@ -1,0 +1,39 @@
+﻿.anime-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+}
+
+#anime-image {
+    height: 300px;
+}
+
+.anime-item a {
+    color: black;
+    display: flex;
+    text-decoration: initial;
+    font-size: 21px;
+}
+
+#name {
+    margin: 0;
+    text-align: left;
+}
+
+#rating {
+    font-size: 18px;
+    display: flex;
+    font-weight: bold;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#middle-rating {
+    color: #4cff00;
+}
+
+#user-rating {
+    color: #ff6a00;
+    margin-left: 15px;
+}

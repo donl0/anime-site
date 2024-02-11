@@ -6,10 +6,9 @@
 
 #header-wrapper {
     display: grid;
-    grid-template-columns: 0.3fr auto 0.4fr 5fr auto;
+    grid-template-columns: 0.3fr auto 0.4fr 5fr 0.7fr;
     background: #FFA701;
     height: 50px;
-    border-bottom: 2px solid #000;
     border-top: 2px solid #000;
     grid-auto-rows:minmax(0px, 50px);
     grid-column-gap:1em;
@@ -90,7 +89,12 @@ ul, li {
 
 }
 
-#user-icon {
-    height: 40px;
+.user-icon {
+    height: 42px;
     margin-bottom:10px;
 }
+
+.button > img {
+    padding-left: 3px;
+}
+

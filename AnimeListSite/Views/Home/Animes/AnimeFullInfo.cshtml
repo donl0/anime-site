@@ -1,0 +1,56 @@
+﻿<link rel="stylesheet" href="~/css/anime-full-info.css" />
+
+<span id="full-info-name">Gugger laggan</span>
+
+<div id="full-info-wrapper">
+
+	<div class="side"></div>
+	<img src="~/Images/gurren_laggan.jpg" id="full-info-image" />
+	<button id="open-lists" onclick="OnAddToListButtonClicked()">
+		<div class="button-content">
+			<img src="~/Images/folder-icon.png" />
+			<span>Add to lists</span>
+
+		</div>
+
+	</button>
+	<div id="info-side">
+		<div class="info-header"><span>Info</span></div>
+		<p><span>Type: TV Serial</span></p>
+		<p><span>Episodes: 64</span></p>
+
+		<div id="genres-container">
+			<button>action</button>
+			<button>senen</button>
+			<button>shoto</button>
+
+		</div>
+	</div>
+	<div id="rating-side">
+		<div class="info-header"><span>Rating</span></div>
+
+		<span id="stars" class="star-container"></span>
+		<span id="rating-number">9.49</span>
+	</div>
+	<div class="side"></div>
+	<div id="lists-handler" class="hidden">
+		<div><button href="#" id="first-list"><span>+Watched</span></button></div>
+		<div><button href="#"><span>+Planned</span></button></div>
+		<div><button href="#"><span>+Abandoned</span></button></div>
+	</div>
+	<div class="info-header" id="description-header">
+		<span>Description</span>
+	</div>
+	<div id="description-info">
+		<p>
+			<span>
+				Никто этого уже не ждал и не надеялся, но...
+				«Простите, что сняли четвертый сезон!», — возвестила студия Sunrise и вернула любимых героев, по которым все уже успели соскучиться, на экраны. Гинтама снова с нами, и она лучше, чем когда-либо прежде! В ролях: Ёродзуя, Шинсенгуми, Джои, пришельцы — все наши старые-добрые и новые-злые герои. В Эдо, как обычно, случаются катастрофы местного и вселенского масштаба, а предотвращать их и спасать мир вновь придется нашим веселым и бесшабашным героям.
+				В основе аниме юмор самого разного калибра: от туалетных шуток до изысканных острот, а кроме того куча отсылок и пародий. Мысль «Как всю съемочную группу в полном составе до сих пор не засудили?» сломает ваш мозг. Так что приготовьтесь! Ваши стереотипы об аниме будут разрушены навсегда. А сами вы будете рыдать от смеха, наблюдая за невероятными приключениями самурая с серебряными волосами и его необыкновенными соседями!
+			</span>
+		</p>
+		</div>
+</div>
+
+<script src="~/js/full-info.js"></script>
+<script src="~/js/start-drawer.js"></script>

@@ -1,0 +1,27 @@
+﻿@import url('colors.css');
+
+#bookmarks-wrapper {
+    display: grid;
+    grid-template-columns: 0.34fr 1fr;
+    grid-column-gap: 1em;
+}
+
+#bookmarks-switcher {
+    display: block;
+    background: var(--background-lighter)
+}
+    #bookmarks-switcher button {
+        border: solid 3px;
+        border-radius: 4px;
+        background: var(--background);
+        outline: none;
+        border: none;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 3px;
+    }
+
+        #bookmarks-switcher button:hover {
+            background: var(--background-darker);
+        }

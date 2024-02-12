@@ -1,0 +1,25 @@
+﻿<link rel="stylesheet" href="~/css/bookmarks.css" />
+
+
+<div id="bookmarks-wrapper">
+	<div id="bookmarks-switcher">
+		<button>
+			<span>All</span>
+			<span>22</span>
+			</button>
+		<div></div>
+		<button>
+			<span>Planned</span>
+			<span>4</span>
+		</button>
+		<button>
+			<span>Watched</span>
+			<span>14</span>
+		</button>
+		<button>
+			<span>Abandoned</span>
+			<span>5</span>
+		</button>
+	</div>
+	@await Html.PartialAsync("Base/AnimeList")
+</div>

@@ -1,4 +1,6 @@
-﻿#full-info-wrapper {
+﻿@import url('colors.css');
+
+#full-info-wrapper {
     margin-top: 30px;
     display: grid;
     grid-template-columns: 0.25fr 0.55fr 1fr 1fr 0.25fr;
@@ -41,7 +43,7 @@
     border-radius: 7px;
     height: 35px;
     width: 100%;
-    background-color: #FFA701;
+    background-color: var(--background);
     cursor: pointer;
     font-weight: bold;
     display: flex;
@@ -68,7 +70,7 @@
 
 @keyframes pulse {
     0%, 100% {
-        background-color: #FFA701;
+        background-color: var(--background);
     }
 
     50% {
@@ -88,7 +90,7 @@
         text-decoration: initial;
         outline: none;
         border: none;
-        background: #FFA701;
+        background: var(--background);
         width: 100%;
 
     }
@@ -144,11 +146,11 @@ button:hover {
 }
 
     #lists-handler button:hover {
-        background: #ffb425;
+        background: var(--background-lighter);
     }
 
 .info-header {
-    background: #FFA701;
+    background: var(--background);
     width:auto;
     height:auto;
 }
@@ -161,7 +163,7 @@ button:hover {
 
 #genres-container button {
     border-radius: 5px;
-    background: #FFA701;
+    background: var(--background);
     font-weight: bold;
 }
 

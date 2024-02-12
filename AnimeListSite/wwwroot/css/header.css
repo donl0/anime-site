@@ -1,4 +1,6 @@
-﻿#header-img {
+﻿@import url('colors.css');
+
+#header-img {
     width: 100%;
     max-height: 120px;
     object-fit: cover;
@@ -7,12 +9,11 @@
 #header-wrapper {
     display: grid;
     grid-template-columns: 0.3fr auto 0.4fr 5fr 0.7fr;
-    background: #FFA701;
+    background: var(--background);
     height: 50px;
     border-top: 2px solid #000;
-    grid-auto-rows:minmax(0px, 50px);
-    grid-column-gap:1em;
-
+    grid-auto-rows: minmax(0px, 50px);
+    grid-column-gap: 1em;
 }
 
 #header-icon {
@@ -32,7 +33,7 @@
 }
 
 .button:hover {
-    background: #ff9400;
+    background: var(--background-darker);
 }
 
 #header-wrapper button {
@@ -72,16 +73,16 @@
 }
 
 ul, li {
-    background: #faac18;
+    background: var(--background);
 }
 
 #header-wrapper > ul > li{
-    background: none; /* Исключаем первый <li> из стилизации */
+    background: none;
 }
-    ol ol, ol ul, ul ol, ul ul {
-        background: #faac18;
-        display: none;
-    }
+ol ol, ol ul, ul ol, ul ul {
+    background: var(--background);
+    display: none;
+}
 
 #header-wrapper ul li:hover > ul,
 #header-wrapper ul li:hover > ul li:hover > ul {

@@ -1,29 +1,48 @@
-﻿function drawStars(rating) {
-	const container = document.getElementById("stars");
+﻿document.addEventListener("DOMContentLoaded", function () {
+    drawStars(8.66);
+    highlightStars(5);
+    function drawStars(rating) {
+        const container = document.getElementById("stars");
 
-	container.innerHTML = '';
+        container.innerHTML = '';
 
-	for (let i = 0; i < 10; i++) {
-		const star = document.createElement("span");
-		star.innerHTML = "&#9734;";
-		star.classList.add("gray-star");
-		container.appendChild(star);
-	}
+        for (let i = 0; i < 10; i++) {
+            const star = document.createElement("span");
+            star.innerHTML = "&#9734;";
+            star.classList.add("gray-star");
 
-	const goldStarsCount = Math.round(rating);
+            star.addEventListener("mouseover", function () {
+                highlightStars(i + 1);
+            });
 
-	for (let i = 0; i < goldStarsCount; i++) {
-		const star = container.children[i];
-		star.innerHTML = "&#9733;";
-		star.classList.remove("gray-star");
-		star.classList.add("gold-star");
-	}
+            star.addEventListener("click", function () {
+                sendRating(i + 1);
+            });
 
-	const lastGoldStar = container.children[goldStarsCount];
-	if (lastGoldStar) {
-		const percentage = (rating - goldStarsCount) * 100;
-		lastGoldStar.style.width = `${percentage}%`;
-	}
-}
+            if (i < rating) {
+                star.innerHTML = "&#9733;";
+                star.classList.remove("gray-star");
+                star.classList.add("gold-star");
+            }
 
-drawStars(8.66);
+            container.appendChild(star);
+        }
+    }
+
+    function highlightStars(count) {
+        const container = document.getElementById("stars");
+        const stars = container.children;
+
+        for (let i = 0; i < stars.length; i++) {
+            stars[i].classList.remove("hover-star");
+        }
+
+        for (let i = 0; i < count; i++) {
+            stars[i].classList.add("hover-star");
+        }
+    }
+
+    function sendRating(rating) {
+        console.log("Отправлен рейтинг:", rating);
+    }
+});

@@ -169,6 +169,7 @@ button:hover {
 
 .star-container {
     font-size: 33px;
+    display: inline-block;
 }
 
 .gray-star {
@@ -177,6 +178,10 @@ button:hover {
 
 .gold-star {
     color: #FFD700;
+}
+
+.hover-star {
+    color: #FFA500;
 }
 
 #rating-number {

@@ -6,18 +6,18 @@
     <title>@ViewData["Title"] - AnimeListSite</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/base-page.css" />
-
 </head>
 <body>
-    @await Html.PartialAsync("Header")
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    @await Html.PartialAsync("Base/Header")
+    
+
     <div id="body-wrapper">
         <div id="left-side"></div>
-        @await Html.PartialAsync("Base/AnimeList")
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
         <div id="right-side"></div>
     </div>
 

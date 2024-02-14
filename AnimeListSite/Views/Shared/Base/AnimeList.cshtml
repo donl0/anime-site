@@ -1,11 +1,15 @@
-﻿<link rel="stylesheet" href="~/css/anime-list.css" />
+﻿@using Application.Models
 
+<link rel="stylesheet" href="~/css/anime-list.css" />
+
+
+@model ICollection<AnimePageVM>
 
 <div id="animes-wrapper">
-	@await Html.PartialAsync("Base/AnimeItem")
-	@await Html.PartialAsync("Base/AnimeItem")
-	@await Html.PartialAsync("Base/AnimeItem")
-	@await Html.PartialAsync("Base/AnimeItem")
-	@await Html.PartialAsync("Base/AnimeItem")
-	@await Html.PartialAsync("Base/AnimeItem")
+	@{
+		foreach (var element in Model)
+		{
+			@await Html.PartialAsync("Base/AnimeItem", element)
+		}
+	}
 </div>

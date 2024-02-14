@@ -1,10 +1,12 @@
-﻿<link rel="stylesheet" href="~/css/anime-item.css" />
+﻿@using Application.Models
+@model AnimePageVM
+
+<link rel="stylesheet" href="~/css/anime-item.css" />
 
 <div class="anime-item">
-	<img src="~/Images/gurren_laggan.jpg" id="anime-image" />
-	<a href="#" id="name">Gurren laggan</a>
+	<img src="@Model.Image.Original" id="anime-image" />
+	<a asp-action="Anime" asp-controller="Animes" asp-route-id=@Model.Id  id="name">@Model.Name</a>
 	<div id="rating-handler">
-		<span id="middle-rating" class="rating">9.91</span>
-		<span id="user-rating" class="rating">8.5</span>
+		<span id="middle-rating" class="rating">@Model.Score</span>
 	</div>
 </div>

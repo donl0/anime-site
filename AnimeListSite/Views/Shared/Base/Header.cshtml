@@ -8,11 +8,11 @@
 
         <a href="#" class="button">Anime Burger </a>
 
-        <a href="#" class="button"><p>TOP</p></a>
+        <a asp-action="TopHundred" asp-controller="Animes" class="button"><p>TOP</p></a>
 
-        <div class="button">
-            <input type="text" id="search" placeholder="Поиск...">
-        </div>
+        <form asp-action="Animes" asp-controller="Animes">
+            <input  class="submit_on_enter" type="text" name="name" placeholder="Search..." id="search">
+        </form>
 
         <ul>
             <li>
@@ -34,3 +34,19 @@
         </ul>
     </div>
 </header>
+
+<script>
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            // Получаем значение из текстового поля
+            var searchText = document.getElementById("search").value;
+
+            // Формируем URL для перехода
+
+            var url = "/Animes/Anime?name=" + encodeURIComponent(searchText);
+
+            // Перенаправляем на новую страницу
+            window.location.href = url;
+        }
+    }
+</script>

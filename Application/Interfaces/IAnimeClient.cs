@@ -6,8 +6,10 @@ namespace Application.Interfaces
 {
 	public interface IAnimeClient
 	{
-		Task<List<Anime>> GetTopHundredAsync();
-		Task<Anime> GetWithIdAsync(int id);
-		Task<Anime> GetWithNameAsync(string value);
-	}
+		Task<List<AnimeId>> GetTopHundredFullInfoAsync();
+        Task<List<Anime>> GetTopHundredAsync();
+        Task<AnimeId> GetFullInfoWithIdAsync(int id);
+		Task<List<AnimeId>> GetFullInfoWithNameAsync(string value);
+        Task<List<Anime>> GetWithNameAsync(string value);
+    }
 }

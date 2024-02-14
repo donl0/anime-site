@@ -15,29 +15,62 @@ namespace Infrastructure.Client
 			_httpClient = httpClient;
 		}
 
-		public async Task<List<Anime>> GetTopHundredAsync()
+		public async Task<List<AnimeId>> GetTopHundredFullInfoAsync()
 		{
-			string url = "animes?order=ranked&limit=10";
-			List<Anime> animes = await _httpClient.GetFromJsonAsync<List<Anime>>(url);
+			List<Anime> animes = await GetTopHundredAsync();
 
-			return animes;
+            var animesId = await ConvertToAnimesId(animes);
+
+			return animesId;
 		}
 
-		public async Task<Anime> GetWithIdAsync(int id)
+		public async Task<AnimeId> GetFullInfoWithIdAsync(int id)
 		{
 			string url = $"animes/{id}";
-			Anime animes = await _httpClient.GetFromJsonAsync<Anime>(url);
+			AnimeId animes = await _httpClient.GetFromJsonAsync<AnimeId>(url);
 
 			return animes;
 		}
 
-		public async Task<Anime> GetWithNameAsync(string value)
+		public async Task<List<AnimeId>> GetFullInfoWithNameAsync(string value)
 		{
-			int limit = 35;
-			string url = $"animes?search={value}&limit={limit}";
-			Anime animes = await _httpClient.GetFromJsonAsync<Anime>(url);
+			List<Anime> animes = await GetWithNameAsync(value);
+
+            var animesId = await ConvertToAnimesId(animes);
+
+			return animesId;
+		}
+
+		private async Task<List<AnimeId>> ConvertToAnimesId(List<Anime> animes) {
+
+			List<AnimeId> animesId = new List<AnimeId>();
+
+			foreach (Anime anime in animes)
+			{
+				var animeId = await GetFullInfoWithIdAsync(anime.Id);
+
+				animesId.Add(animeId);
+			}
+
+			return animesId;
+		}
+
+        public async Task<List<Anime>> GetTopHundredAsync()
+        {
+            string url = "animes?order=ranked&limit=30";
+
+            List<Anime> animes = await _httpClient.GetFromJsonAsync<List<Anime>>(url);
 
 			return animes;
-		}
-	}
+        }
+
+        public async Task<List<Anime>> GetWithNameAsync(string value)
+        {
+            int limit = 30;
+            string url = $"animes?order=ranked&search={value}&limit={limit}";
+            List<Anime> animes = await _httpClient.GetFromJsonAsync<List<Anime>>(url);
+
+			return animes;
+        }
+    }
 }

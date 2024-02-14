@@ -1,9 +1,10 @@
 ﻿#animes-wrapper {
+    margin-top:10px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     justify-content: center;
-    align-items: center;
     justify-items: center;
     grid-column-gap: 1em;
     grid-row-gap: 2em;
+    align-items: start;
 }

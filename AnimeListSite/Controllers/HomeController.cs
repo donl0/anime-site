@@ -5,7 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AnimeListSite.Controllers
 {
@@ -18,12 +21,12 @@ namespace AnimeListSite.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+			return View();
         }
 
-        public IActionResult Privacy()
+		public IActionResult Privacy()
         {
             return View();
         }

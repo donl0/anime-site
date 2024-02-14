@@ -3,36 +3,35 @@
 #full-info-wrapper {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: 0.25fr 0.55fr 1fr 1fr 0.25fr;
+    grid-template-columns: 0.55fr 1fr 1fr;
     grid-template-rows: 227px 227px 50px 230px;
     grid-column-gap: 1em;
 }
 
 #full-info-image {
     height: 100%;
-    grid-column: 2;
+    grid-column: 0;
     grid-row: 1 /span 2;
 }
 
 #open-lists {
-    grid-column: 2;
+    grid-column: 0;
     grid-row: 3;
 }
 #full-info-name {
-    padding-left: 120px;
     color: black;
     font-size: 27px;
     font-weight: bold;
 }
 
 #description-header {
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 3;
     height:90%;
 }
 
 #description-info {
-    grid-column: 3 /span 2;
+    grid-column: 2 /span 2;
     grid-row: 4;
 }
 
@@ -79,7 +78,7 @@
 }
 
 #lists-handler {
-    grid-column: 2;
+    grid-column: 0;
     grid-row: 4;
     display: none;
     animation: fadeInOut 0.5s ease-out;

@@ -45,15 +45,5 @@ namespace AnimeListSite.Controllers
 
             return View("Base/AnimeList", animes);
         }
-
-        public IActionResult Search()
-        {
-            return View();
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }

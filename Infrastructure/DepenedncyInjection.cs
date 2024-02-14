@@ -21,9 +21,10 @@ namespace Infrastructure
 
             var shikiUrl = configuration["ShikiUrl"];
 
-            services.AddHttpClient<IAnimeClient, AnimeClient>(client => { 
+            services.AddHttpClient<IAnimeClient, AnimeClient>(client =>
+            {
                 client.BaseAddress = new System.Uri(shikiUrl);
-            })
+            });
 
 
 			return services;

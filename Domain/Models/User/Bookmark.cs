@@ -6,7 +6,7 @@ namespace Domain.Models.User
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public ICollection<Anime> animes { get; set; }
+        public ICollection<Anime> Animes { get; set; }
         public User User { get; set; }
     }
 }

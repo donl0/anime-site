@@ -26,4 +26,8 @@
     <Resource Include="wwwroot\Images\gurren_laggan.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Home\Animes\" />
+  </ItemGroup>
+
 </Project>

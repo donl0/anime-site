@@ -4,11 +4,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Infrastructure;
+using Application;
 
 
 namespace AnimeListSite
 {
-	public class Startup
+    public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -22,6 +23,7 @@ namespace AnimeListSite
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 			services.AddInfrastructure(Configuration);
+            services.AddApplication();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -46,7 +48,7 @@ namespace AnimeListSite
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Animes}/{action=TopHundred}/{id?}");
             });
         }
     }

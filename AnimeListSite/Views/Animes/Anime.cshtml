@@ -1,0 +1,65 @@
+﻿@using Application.Models
+@model AnimeFullVM
+
+<link rel="stylesheet" href="~/css/anime-full-info.css" />
+
+<span id="full-info-name">@Model.Name</span>
+
+<div id="full-info-wrapper">
+
+	<img src=@Model.Image.Original id="full-info-image" />
+	<button id="open-lists" onclick="OnAddToListButtonClicked()">
+		<div class="button-content">
+			<img src="~/Images/folder-icon.png"/>
+			<span>Add to lists</span>
+
+		</div>
+
+	</button>
+	<div id="info-side">
+		<div class="info-header"><span>Info</span></div>
+		<p><span>Type: @Model.Kind</span></p>
+		<p><span>Episodes: @Model.Episodes</span></p>
+
+		<div id="genres-container">
+			@{
+					@foreach (var genre in Model.Genres)
+				{
+						<button>@genre.Name</button>
+				}
+			}
+		</div>
+	</div>
+	<div id="rating-side">
+		<div class="info-header"><span>Rating</span></div>
+
+		<span id="stars" class="star-container"></span>
+		<span id="rating-number">@Model.Score</span>
+	</div>
+	<div id="lists-handler" class="hidden">
+		<div><button href="#" id="first-list"><span>+Watched</span></button></div>
+		<div><button href="#"><span>+Planned</span></button></div>
+		<div><button href="#"><span>+Abandoned</span></button></div>
+	</div>
+	<div class="info-header" id="description-header">
+		<span>Description</span>
+	</div>
+	<div id="description-info">
+		<p>
+			<span>
+				@Model.Description
+			</span>
+		</p>
+		</div>
+</div>
+
+
+<script src="~/js/full-info.js"></script>
+<script src="~/js/star-drawer.js"></script>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () { 
+		drawStars(@float.Parse(Model.Score, System.Globalization.CultureInfo.InvariantCulture));
+	})
+</script>
+

@@ -42,11 +42,13 @@ namespace AnimeListSite
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
+				endpoints.MapRazorPages();
+				endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Animes}/{action=TopHundred}/{id?}");
             });

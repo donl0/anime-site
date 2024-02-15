@@ -14,24 +14,12 @@
             <input  class="submit_on_enter" type="text" name="name" placeholder="Search..." id="search">
         </form>
 
-        <ul>
-            <li>
-                <div class="button">
-                    <img src="~/Images/slidan.jpg" class="user-icon" />
-                    <a href="#" class="dropdown-link"><span>Padj 159</span></a>
-                </div>
-                <ul>
-                    <li class="button">
-                        <img src="~/Images/profile-icon.png" class="user-icon" />
-                        <a href="#" class="dropdown-link"><span>Профиль</span></a>
-                    </li>
-                    <li class="button">
-                        <img src="~/Images/list-icon.png" class="user-icon" />
-                        <a href="#" class="dropdown-link"><span>Списки</span></a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <div id="login-info">
+            <a asp-action="Bookmarks" asp-controller="User" class="button">
+                <img src="~/Images/folder-icon.png" class="user-icon" />
+            </a>
+            <partial name="_LoginPartial" />
+        </div>
     </div>
 </header>
 

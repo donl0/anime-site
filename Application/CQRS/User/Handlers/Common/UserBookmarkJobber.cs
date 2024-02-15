@@ -7,7 +7,7 @@ namespace Application.CQRS.User.Handlers.Common
 {
 	public class UserBookmarkJobber
 	{
-		protected async Task<Domain.Models.User.Bookmark> TryTakeBookmark(IAnimeDbContext context, int animeId, int userId, string bookmarkName) {
+		protected async Task<Domain.Models.User.Bookmark> TryTakeBookmark(IAnimeDbContext context, int animeId, string userId, string bookmarkName) {
 
 			var user = await context.Users.SingleOrDefaultAsync(u => u.Id == userId);
 

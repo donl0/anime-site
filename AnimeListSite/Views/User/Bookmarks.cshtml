@@ -1,0 +1,20 @@
+﻿@using Application.Models
+<link rel="stylesheet" href="~/css/bookmarks.css" />
+
+@model ICollection<UserBookmarkVM>
+
+<div id="bookmarks-wrapper">
+	<div id="bookmarks-switcher">
+
+		@{
+			@foreach (var boormark in Model)
+			{
+				<button>
+					<span>@boormark.Title</span>
+					<span>@boormark.Count</span>
+				</button>
+			}
+		}
+		</div>
+		<div></div>
+</div>

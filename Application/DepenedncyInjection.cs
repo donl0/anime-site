@@ -1,5 +1,6 @@
 ﻿using Application.Models;
 using Domain.Models.Shiki;
+using Domain.Models.User;
 using Mapster;
 using MapsterMapper;
 using MediatR;
@@ -43,6 +44,11 @@ namespace Application
 				.Map(dest => dest.Image.X96, src => $"{shikiUrl}{src.Image.X96}")
 				.Map(dest => dest.Image.X48, src => $"{shikiUrl}{src.Image.X48}")
 				.RequireDestinationMemberSource(true);
+
+			config.NewConfig<Bookmark, UserBookmarkVM>()
+	        .Map(dest => dest.Title, src => src.Title)
+	        .Map(dest => dest.Count, src => src.Animes != null ? src.Animes.Count : 0);
+
 
 			services.AddSingleton(config);
             services.AddScoped<IMapper, ServiceMapper>();

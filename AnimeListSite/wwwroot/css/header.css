@@ -61,41 +61,18 @@
 
 }
 
-.dropdown-link, ul, li {
-    justify-self: right;
-    box-sizing: border-box;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    text-decoration: none;
-    width: 100%;
-}
-
-ul, li {
-    background: var(--background);
-}
-
-#header-wrapper > ul > li{
-    background: none;
-}
-ol ol, ol ul, ul ol, ul ul {
-    background: var(--background);
-    display: none;
-}
-
-#header-wrapper ul li:hover > ul,
-#header-wrapper ul li:hover > ul li:hover > ul {
-    display: initial;
-
-}
-
 .user-icon {
-    height: 42px;
-    margin-bottom:10px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
 .button > img {
     padding-left: 3px;
 }
 
+#login-info {
+    display: flex;
+    justify-content:start;
+
+}

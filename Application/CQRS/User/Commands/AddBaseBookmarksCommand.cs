@@ -1,5 +1,4 @@
-﻿using Domain.Models.User;
-using MediatR;
+﻿using MediatR;
 
 namespace Application.CQRS.User.Commands
 {

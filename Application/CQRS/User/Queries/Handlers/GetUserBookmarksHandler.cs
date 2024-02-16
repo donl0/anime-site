@@ -1,5 +1,4 @@
 ﻿using Application.Common;
-using Application.CQRS.User.Queries;
 using Application.Interfaces;
 using Application.Models;
 using Domain.Models.User;
@@ -14,7 +13,7 @@ using UserPath = Domain.Models.User;
 
 namespace Application.CQRS.User.Queries.Handlers
 {
-    public class GetUserBookmarksHandler : IRequestHandler<GetUserBookmarksQuery, ICollection<UserBookmarkVM>>
+	public class GetUserBookmarksHandler : IRequestHandler<GetUserBookmarksQuery, ICollection<UserBookmarkVM>>
     {
         private readonly IAnimeDbContext _context;
         private readonly IMapper _mapper;

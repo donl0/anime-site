@@ -30,22 +30,20 @@ namespace Application
                 .Map(dest => dest.Image.Original, src => $"{shikiUrl}{src.Image.Original}")
                 .Map(dest => dest.Image.Preview, src => $"{shikiUrl}{src.Image.Preview}")
                 .Map(dest => dest.Image.X96, src => $"{shikiUrl}{src.Image.X96}")
-                .Map(dest => dest.Image.X48, src => $"{shikiUrl}{src.Image.X48}")
-                .RequireDestinationMemberSource(true);
+                .Map(dest => dest.Image.X48, src => $"{shikiUrl}{src.Image.X48}");
 
             config.NewConfig<Anime, AnimePageVM>()
                 .Map(dest => dest.Image.Original, src => $"{shikiUrl}{src.Image.Original}")
                 .Map(dest => dest.Image.Preview, src => $"{shikiUrl}{src.Image.Preview}")
                 .Map(dest => dest.Image.X96, src => $"{shikiUrl}{src.Image.X96}")
-                .Map(dest => dest.Image.X48, src => $"{shikiUrl}{src.Image.X48}")
-                .RequireDestinationMemberSource(true);
+                .Map(dest => dest.Image.X48, src => $"{shikiUrl}{src.Image.X48}");
+
 
             config.NewConfig<AnimeFullDTO, AnimePageDTO>()
                 .Map(dest => dest.Image.Original, src => $"{shikiUrl}{src.Image.Original}")
-				.Map(dest => dest.Image.Preview, src => $"{shikiUrl}{src.Image.Preview}")
-				.Map(dest => dest.Image.X96, src => $"{shikiUrl}{src.Image.X96}")
-				.Map(dest => dest.Image.X48, src => $"{shikiUrl}{src.Image.X48}")
-				.RequireDestinationMemberSource(true);
+                .Map(dest => dest.Image.Preview, src => $"{shikiUrl}{src.Image.Preview}")
+                .Map(dest => dest.Image.X96, src => $"{shikiUrl}{src.Image.X96}")
+                .Map(dest => dest.Image.X48, src => $"{shikiUrl}{src.Image.X48}");
 
 			config.NewConfig<Bookmark, UserBookmarkVM>()
 	        .Map(dest => dest.Title, src => src.Title)

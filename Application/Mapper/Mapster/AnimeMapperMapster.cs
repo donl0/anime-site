@@ -1,16 +1,15 @@
-﻿using Application.Common;
-using Application.Extensions;
+﻿using Application.Extensions;
 using Application.Interfaces;
 using Application.Models;
 using Domain.Models.Shiki;
 using Domain.Models.User;
 using Mapster;
 using MapsterMapper;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Application.Mapper.Mapster
 {
@@ -33,13 +32,27 @@ namespace Application.Mapper.Mapster
 			}
 
 			animeWM = animeWM.FillBookmarks(bookmarks, animeId);
-
 			return animeWM;
 		}
 
-		public AnimePageVM Map(AnimeFullDTO anime, Rating rating)
+		public async Task<List<AnimePageVM>> Map(List<Anime> animes, IAnimeDbContext context, string userId)
 		{
-			throw new System.NotImplementedException();
+			List<AnimePageVM> animePageVMs = _mapper.Map<List<AnimePageVM>>(animes);
+
+			List<Rating> ratings = await context.Ratings
+			  .Where(r => r.User.Id == userId && animes.Select(a => a.Id).Contains(r.Anime))
+			  .ToListAsync();
+
+			foreach (var animePageVM in animePageVMs)
+			{
+				var rating = ratings.FirstOrDefault(r => r.Anime == animePageVM.Id);
+				if (rating != null)
+				{
+					animePageVM.UserRating = rating.value;
+				}
+			}
+
+			return animePageVMs;
 		}
 	}
 }

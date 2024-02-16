@@ -11,6 +11,7 @@ namespace Application.Mapper
     {
         public Task<AnimeFullVM> Map(User user, int animeId, AnimePageDTO animeDTO, List<Bookmark> bookmarks, Rating rating);
 
-		public AnimePageVM Map(Domain.Models.Shiki.AnimeFullDTO anime, Rating rating);
-    }
+        public Task<List<AnimePageVM>> Map(List<Anime> animes, IAnimeDbContext context, string userId);
+
+	}
 }

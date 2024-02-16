@@ -8,5 +8,6 @@ namespace Application.Models
 		public string Name { get; set; }
 		public Image Image { get; set; }
 		public string Score { get; set; }
+		public int UserRating { get; set; }
 	}
 }

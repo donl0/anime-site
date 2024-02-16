@@ -1,4 +1,5 @@
-﻿function drawStars(rating) {
+﻿function drawStars(rating, userRating) {
+    rating = Math.round(rating);
     const container = document.getElementById("stars");
     const animeId = container.getAttribute("data-anime-id");
 
@@ -24,6 +25,10 @@
 
         container.appendChild(star);
     }
+
+    if (userRating != 0) {
+        highlightStars(userRating);
+    }
 }
 
 function highlightStars(count) {
@@ -40,10 +45,6 @@ function highlightStars(count) {
 }
 
 function sendRating(rating, animeId) {
-    console.log("animeId:", animeId);
-
-    console.log("Отправлен рейтинг:", rating);
-
     $.ajax({
         type: 'POST',
         url: '/User/Rating',

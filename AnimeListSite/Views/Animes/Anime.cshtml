@@ -73,13 +73,12 @@
 		</div>
 </div>
 
-
 <script src="~/js/full-info.js"></script>
 <script src="~/js/star-drawer.js"></script>
 
 <script>
 	document.addEventListener("DOMContentLoaded", function () { 
-		drawStars(@float.Parse(Model.Score, System.Globalization.CultureInfo.InvariantCulture));
+		drawStars(parseFloat(@Model.Score, 10), @Model.UserRating);
 	})
 </script>
 

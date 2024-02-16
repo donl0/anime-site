@@ -40,15 +40,13 @@ namespace Application.CQRS.User.Queries.Handlers
 
 			AnimePageDTO animeDTO = await _mediator.Send(query);
 
-			AnimeFullVM animeWM = animeDTO.Adapt<AnimeFullVM>();
-
 			UserPath.User user = await GetUser(_context, request.UserId);
 
 			List<Bookmark> bookmarks = await _context.Bookmarks.Where(b => b.User.Id == user.Id).ToListAsync();
 
 			Rating rating = await _context.Ratings.FirstOrDefaultAsync(r => r.User == user & r.Anime == request.AnimeId);
 
-			animeWM = await _mapper.Map(user, request.AnimeId, animeDTO, bookmarks, rating);
+			AnimeFullVM animeWM = await _mapper.Map(user, request.AnimeId, animeDTO, bookmarks, rating);
 
 			return animeWM;
 		}

@@ -2,7 +2,7 @@
 
 namespace Domain.Models.Shiki
 {
-	public class AnimeId
+	public class AnimeFullDTO
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }

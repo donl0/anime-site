@@ -124,5 +124,19 @@ namespace AnimeListSite.Controllers
 
 			return Ok();
 		}
+
+		[HttpPost]
+		public async Task<IActionResult> Rating(int value, int animeId) {
+			var user = await _userManager.GetUserAsync(HttpContext.User);
+
+			SetRatingCommand command = new SetRatingCommand { Rating = value,
+				UserId = user.Id,
+				AnimeId = animeId
+			};
+
+			await _mediator.Send(command);
+
+			return Ok();
+		}
 	}
 }

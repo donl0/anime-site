@@ -1,8 +1,13 @@
 ﻿using Application.CQRS.Anime.Queries;
+using Application.CQRS.User.Queries;
 using Application.Models;
+using Domain.Models.User;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace AnimeListSite.Controllers
@@ -10,15 +15,20 @@ namespace AnimeListSite.Controllers
     public class AnimesController : Controller
     {
 		private readonly IMediator _mediator;
+		private readonly UserManager<User> _userManager;
 
-		public AnimesController(IMediator mediator)
+		public AnimesController(IMediator mediator, UserManager<User> userManager)
 		{
 			_mediator = mediator;
+			_userManager = userManager;
 		}
 
-        public async Task<IActionResult> AnimesAsync(string name) { 
-            GetAnimesWithNameQuery query = new GetAnimesWithNameQuery { 
-            Name = name 
+		public async Task<IActionResult> AnimesAsync(string name) {
+			var user = await _userManager.GetUserAsync(HttpContext.User);
+
+			GetAnimesWithNameQuery query = new GetAnimesWithNameQuery { 
+            Name = name,
+            UserId = user.Id
             };
 
             List<AnimePageVM> animes = await _mediator.Send(query);
@@ -26,10 +36,14 @@ namespace AnimeListSite.Controllers
 			return View("Base/AnimeList", animes);
 		}
 
+        [Authorize]
 		public async Task<IActionResult> AnimeAsync(int id) {
-            GetAnimeWithIdQuery query = new GetAnimeWithIdQuery
+			var user = await _userManager.GetUserAsync(HttpContext.User);
+
+			GetAnimeWithIdWMQuery query = new GetAnimeWithIdWMQuery
             {
-                AnimeId = id
+                AnimeId = id,
+                UserId = user.Id
             };
 
             AnimeFullVM anime = await _mediator.Send(query);
@@ -37,9 +51,15 @@ namespace AnimeListSite.Controllers
             return View(anime);
         }
 
+        [Authorize]
 		public async Task<IActionResult> TopHundredAsync()
         {
-            GetTopHundredAnimesQuery query = new GetTopHundredAnimesQuery();
+			var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            GetTopHundredAnimesQuery query = new GetTopHundredAnimesQuery
+            {
+                UserId = user.Id
+            };
 
             List<AnimePageVM> animes = await _mediator.Send(query);
 

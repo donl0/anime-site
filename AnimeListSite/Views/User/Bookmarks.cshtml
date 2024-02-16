@@ -1,0 +1,21 @@
+﻿@using Application.Models
+<link rel="stylesheet" href="~/css/bookmarks.css" />
+
+@model BookmarksWithAnimesVM
+
+<div id="bookmarks-wrapper">
+	<div id="bookmarks-switcher">
+		@{
+			@foreach (var boormark in Model.Bookmarks)
+			{
+				<div>
+					<a asp-action="Bookmarks" asp-controller="User" asp-route-bookmarkName=@boormark.Title>
+						<span>@boormark.Title</span>
+						<span class="bookmark-count">@boormark.Count</span>
+					</a>
+				</div>
+			}
+		}
+		</div>
+	@await Html.PartialAsync("Base/AnimeList", Model.Animes)
+</div>

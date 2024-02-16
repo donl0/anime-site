@@ -1,8 +1,9 @@
 ﻿@import url('colors.css');
 
 #bookmarks-wrapper {
+    padding-top:20px;
     display: grid;
-    grid-template-columns: 0.34fr 1fr;
+    grid-template-columns: 0.2fr 1fr;
     grid-column-gap: 1em;
 }
 
@@ -10,18 +11,27 @@
     display: block;
     background: var(--background-lighter)
 }
-    #bookmarks-switcher button {
+    #bookmarks-switcher a {
         border: solid 3px;
         border-radius: 4px;
-        background: var(--background);
         outline: none;
         border: none;
         width: 100%;
         display: flex;
         justify-content: space-between;
         padding-bottom: 3px;
+        color: black;
+        text-decoration: initial;
+        font-weight: bold;
+        padding-left: 3px;
     }
-
-        #bookmarks-switcher button:hover {
+    #bookmarks-switcher div {
+        background: var(--background);
+    }
+        #bookmarks-switcher div:hover {
             background: var(--background-darker);
+        }
+
+        #bookmarks-switcher div .bookmark-count {
+            padding-left: 10px;
         }

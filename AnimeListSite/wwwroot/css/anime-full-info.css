@@ -91,16 +91,19 @@
         border: none;
         background: var(--background);
         width: 100%;
-
     }
 
-#lists-handler button span {
-    padding: 0px;
-    padding-top: 4px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-}
+        #lists-handler button span {
+            padding: 0px;
+            padding-top: 4px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            background: none;
+            outline: none;
+            border: none;
+            width: 100%;
+        }
 
     #lists-handler.hidden {
         display: block !important;

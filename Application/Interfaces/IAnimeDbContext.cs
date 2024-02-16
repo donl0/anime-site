@@ -1,5 +1,6 @@
 ﻿using Domain.Models.User;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -1,8 +1,8 @@
-﻿namespace Domain.Models.User
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace Domain.Models.User
 {
-	public class User
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
+	public class User: IdentityUser
+	{
     }
 }

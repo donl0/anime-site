@@ -6,5 +6,6 @@ namespace Application.CQRS.Anime.Queries
 {
 	public class GetTopHundredAnimesQuery : IRequest<List<AnimePageVM>>
     {
+        public string UserId { get; set; }
     }
 }

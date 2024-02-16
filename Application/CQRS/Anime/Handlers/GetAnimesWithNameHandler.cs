@@ -1,7 +1,7 @@
 ﻿using Application.CQRS.Anime.Queries;
 using Application.Interfaces;
+using Application.Mapper;
 using Application.Models;
-using MapsterMapper;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
@@ -12,21 +12,24 @@ namespace Application.CQRS.Anime.Handlers
 	public class GetAnimesWithNameHandler : IRequestHandler<GetAnimesWithNameQuery, List<AnimePageVM>>
 	{
 		private readonly IAnimeClient _client;
-		private readonly IMapper _mapper;
+		private readonly IAnimeMapper _mapper;
+		private readonly IAnimeDbContext _context;
 
-		public GetAnimesWithNameHandler(IAnimeClient client, IMapper mapper)
+		public GetAnimesWithNameHandler(IAnimeClient client, IAnimeMapper mapper, IAnimeDbContext context)
 		{
 			_client = client;
 			_mapper = mapper;
+			_context = context;
 		}
 
 		public async Task<List<AnimePageVM>> Handle(GetAnimesWithNameQuery request, CancellationToken cancellationToken)
 		{
 			var animes = await _client.GetWithNameAsync(request.Name);
 
-			List<AnimePageVM> vm = _mapper.Map<List<AnimePageVM>>(animes);
 
-			return vm;
+			List<AnimePageVM> animesVm = await _mapper.Map(animes, _context, request.UserId);
+
+			return animesVm;
 		}
 	}
 }

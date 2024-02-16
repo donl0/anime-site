@@ -1,7 +1,7 @@
 ﻿#animes-wrapper {
     margin-top:10px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 220px);
     justify-content: center;
     justify-items: center;
     grid-column-gap: 1em;

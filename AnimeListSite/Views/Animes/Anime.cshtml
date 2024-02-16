@@ -33,13 +33,33 @@
 	<div id="rating-side">
 		<div class="info-header"><span>Rating</span></div>
 
-		<span id="stars" class="star-container"></span>
+		<span id="stars" class="star-container" data-anime-id=@Model.Id></span>
 		<span id="rating-number">@Model.Score</span>
 	</div>
 	<div id="lists-handler" class="hidden">
-		<div><button href="#" id="first-list"><span>+Watched</span></button></div>
-		<div><button href="#"><span>+Planned</span></button></div>
-		<div><button href="#"><span>+Abandoned</span></button></div>
+		@{
+			var bookmarkSign = "";
+
+			@foreach (var bookmark in Model.Bookmarks)
+			{
+				<div>
+					@if (!bookmark.IsAnimeInBookmark)
+					{
+						bookmarkSign = "+";
+					}
+					else
+					{
+						bookmarkSign = "-";
+					}
+
+					<button class="add-remove-button" data-bookmark="@bookmark.Title" data-anime-id=@Model.Id method="post">
+						<span class="bookmark-sign">@bookmarkSign</span>
+						<span>@bookmark.Title</span>
+					</button>
+
+					</div>
+			}
+		}
 	</div>
 	<div class="info-header" id="description-header">
 		<span>Description</span>
@@ -53,13 +73,13 @@
 		</div>
 </div>
 
-
 <script src="~/js/full-info.js"></script>
 <script src="~/js/star-drawer.js"></script>
 
 <script>
 	document.addEventListener("DOMContentLoaded", function () { 
-		drawStars(@float.Parse(Model.Score, System.Globalization.CultureInfo.InvariantCulture));
+		drawStars(parseFloat(@Model.Score, 10), @Model.UserRating);
 	})
 </script>
 
+<script type="module" src="~/js/bookmark-in-anime.js"></script>

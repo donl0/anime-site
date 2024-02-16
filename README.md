@@ -3,9 +3,9 @@
 Layered Architecture based on Bob's clean arhitecture
 
 ## Libs
--MediatR
--Mapster
--EF Core with PostgreSQL
+- MediatR
+- Mapster
+- EF Core with PostgreSQL
 
 ## License
 

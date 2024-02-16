@@ -1,5 +1,6 @@
 ﻿function drawStars(rating) {
     const container = document.getElementById("stars");
+    const animeId = container.getAttribute("data-anime-id");
 
     container.innerHTML = '';
 
@@ -12,7 +13,7 @@
             highlightStars(i + 1);
         });
         star.addEventListener("click", function () {
-            sendRating(i + 1);
+            sendRating(i + 1, animeId);
         });
 
         if (i < rating) {
@@ -38,6 +39,22 @@ function highlightStars(count) {
     }
 }
 
-function sendRating(rating) {
+function sendRating(rating, animeId) {
+    console.log("animeId:", animeId);
+
     console.log("Отправлен рейтинг:", rating);
+
+    $.ajax({
+        type: 'POST',
+        url: '/User/Rating',
+        data: {
+            value: rating,
+            animeId: animeId
+        },
+        success: function (result) {
+        },
+        error: function (error) {
+            console.error(error);
+        }
+    });
 }

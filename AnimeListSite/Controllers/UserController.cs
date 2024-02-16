@@ -126,7 +126,7 @@ namespace AnimeListSite.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Rating(int value, int animeId) {
+		public async Task<IActionResult> RatingAsync(int value, int animeId) {
 			var user = await _userManager.GetUserAsync(HttpContext.User);
 
 			SetRatingCommand command = new SetRatingCommand { Rating = value,

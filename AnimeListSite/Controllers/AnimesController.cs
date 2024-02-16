@@ -23,9 +23,12 @@ namespace AnimeListSite.Controllers
 			_userManager = userManager;
 		}
 
-		public async Task<IActionResult> AnimesAsync(string name) { 
-            GetAnimesWithNameQuery query = new GetAnimesWithNameQuery { 
-            Name = name 
+		public async Task<IActionResult> AnimesAsync(string name) {
+			var user = await _userManager.GetUserAsync(HttpContext.User);
+
+			GetAnimesWithNameQuery query = new GetAnimesWithNameQuery { 
+            Name = name,
+            UserId = user.Id
             };
 
             List<AnimePageVM> animes = await _mediator.Send(query);
@@ -50,7 +53,12 @@ namespace AnimeListSite.Controllers
 
 		public async Task<IActionResult> TopHundredAsync()
         {
-            GetTopHundredAnimesQuery query = new GetTopHundredAnimesQuery();
+			var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            GetTopHundredAnimesQuery query = new GetTopHundredAnimesQuery
+            {
+                UserId = user.Id
+            };
 
             List<AnimePageVM> animes = await _mediator.Send(query);
 

@@ -51,6 +51,7 @@ namespace AnimeListSite.Controllers
             return View(anime);
         }
 
+        [Authorize]
 		public async Task<IActionResult> TopHundredAsync()
         {
 			var user = await _userManager.GetUserAsync(HttpContext.User);

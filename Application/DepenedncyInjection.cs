@@ -24,7 +24,7 @@ namespace Application
 
             const string shikiUrl = "https://shikimori.one";
 
-            config.NewConfig<AnimeId, AnimePageVM>()
+            config.NewConfig<AnimeFullDTO, AnimePageVM>()
                 .Map(dest => dest.Image.Original, src => $"{shikiUrl}{src.Image.Original}")
                 .Map(dest => dest.Image.Preview, src => $"{shikiUrl}{src.Image.Preview}")
                 .Map(dest => dest.Image.X96, src => $"{shikiUrl}{src.Image.X96}")
@@ -38,7 +38,7 @@ namespace Application
                 .Map(dest => dest.Image.X48, src => $"{shikiUrl}{src.Image.X48}")
                 .RequireDestinationMemberSource(true);
 
-            config.NewConfig<AnimeId, AnimeFullVM>()
+            config.NewConfig<AnimeFullDTO, AnimePageDTO>()
                 .Map(dest => dest.Image.Original, src => $"{shikiUrl}{src.Image.Original}")
 				.Map(dest => dest.Image.Preview, src => $"{shikiUrl}{src.Image.Preview}")
 				.Map(dest => dest.Image.X96, src => $"{shikiUrl}{src.Image.X96}")

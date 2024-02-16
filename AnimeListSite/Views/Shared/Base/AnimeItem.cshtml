@@ -8,5 +8,12 @@
 	<a asp-action="Anime" asp-controller="Animes" asp-route-id=@Model.Id  id="name">@Model.Name</a>
 	<div id="rating-handler">
 		<span id="middle-rating" class="rating">@Model.Score</span>
+			@{
+			@if (Model.UserRating != 0)
+				{
+				<span id="user-rating" class="rating">@Model.UserRating</span>
+				} 
+			}
+
 	</div>
 </div>

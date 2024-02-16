@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UserPath = Domain.Models.User;
 using Application.Extensions;
+using Domain.Models.Shiki;
 
 namespace Application.CQRS.User.Queries.Handlers
 {
@@ -41,6 +42,8 @@ namespace Application.CQRS.User.Queries.Handlers
 
 			List<Bookmark> bookmarks = await _context.Bookmarks.Where(b => b.User.Id == user.Id).ToListAsync();
 
+			animeWM = await FillWithUserRating(_context, user, request.AnimeId, animeWM);
+
 			animeWM = animeWM.FillBookmarks(bookmarks, request.AnimeId);
 
 			return animeWM;
@@ -52,8 +55,17 @@ namespace Application.CQRS.User.Queries.Handlers
 
 			if (user == null)
 				throw new NotFoundException(nameof(UserPath.User), userId);
-
 			return user;
+		}
+
+		private async Task<AnimeFullVM> FillWithUserRating(IAnimeDbContext context, UserPath.User user, int animeId, AnimeFullVM animeWM) {
+			Rating rating = await _context.Ratings.FirstOrDefaultAsync(r => r.User == user & r.Anime == animeId);
+
+			if (rating != null) {
+				animeWM.UserRating = rating.value;
+			}
+
+			return animeWM;
 		}
 	}
 }

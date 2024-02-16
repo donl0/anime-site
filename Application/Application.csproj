@@ -18,9 +18,5 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CQRS\Bookmark\Queries\" />
-  </ItemGroup>
-
 
 </Project>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.CQRS.Anime.Handlers
 {
-	public class GetAnimeWithIdHandler : IRequestHandler<GetAnimeWithIdQuery, AnimeFullVM>
+	public class GetAnimeWithIdHandler : IRequestHandler<GetAnimeWithIdQuery, Models.AnimePageDTO>
     {
 		private readonly IAnimeClient _client;
 		private readonly IMapper _mapper;
@@ -20,11 +20,11 @@ namespace Application.CQRS.Anime.Handlers
 			_mapper = mapper;
 		}
 
-		public async Task<AnimeFullVM> Handle(GetAnimeWithIdQuery request, CancellationToken cancellationToken)
+		public async Task<Models.AnimePageDTO> Handle(GetAnimeWithIdQuery request, CancellationToken cancellationToken)
         {
-			AnimeId anime = await _client.GetFullInfoWithIdAsync(request.AnimeId);
+			Domain.Models.Shiki.AnimeFullDTO anime = await _client.GetFullInfoWithIdAsync(request.AnimeId);
 
-			AnimeFullVM vm = _mapper.Map<AnimeFullVM>(anime);
+			Models.AnimePageDTO vm = _mapper.Map<Models.AnimePageDTO>(anime);
 
 			return vm;
         }

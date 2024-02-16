@@ -15,7 +15,7 @@ namespace Infrastructure.Client
 			_httpClient = httpClient;
 		}
 
-		public async Task<List<AnimeId>> GetTopHundredFullInfoAsync()
+		public async Task<List<AnimeFullDTO>> GetTopHundredFullInfoAsync()
 		{
 			List<Anime> animes = await GetTopHundredAsync();
 
@@ -24,15 +24,15 @@ namespace Infrastructure.Client
 			return animesId;
 		}
 
-		public async Task<AnimeId> GetFullInfoWithIdAsync(int id)
+		public async Task<AnimeFullDTO> GetFullInfoWithIdAsync(int id)
 		{
 			string url = $"animes/{id}";
-			AnimeId animes = await _httpClient.GetFromJsonAsync<AnimeId>(url);
+			AnimeFullDTO animes = await _httpClient.GetFromJsonAsync<AnimeFullDTO>(url);
 
 			return animes;
 		}
 
-		public async Task<List<AnimeId>> GetFullInfoWithNameAsync(string value)
+		public async Task<List<AnimeFullDTO>> GetFullInfoWithNameAsync(string value)
 		{
 			List<Anime> animes = await GetWithNameAsync(value);
 
@@ -41,9 +41,9 @@ namespace Infrastructure.Client
 			return animesId;
 		}
 
-		private async Task<List<AnimeId>> ConvertToAnimesId(List<Anime> animes) {
+		private async Task<List<AnimeFullDTO>> ConvertToAnimesId(List<Anime> animes) {
 
-			List<AnimeId> animesId = new List<AnimeId>();
+			List<AnimeFullDTO> animesId = new List<AnimeFullDTO>();
 
 			foreach (Anime anime in animes)
 			{

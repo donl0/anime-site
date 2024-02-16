@@ -19,12 +19,8 @@ namespace Application.CQRS.User.Commands.Handlers
         {
             Domain.Models.User.Bookmark bookmark = await TryTakeBookmark(_context, request.AnimeId, request.UserId, request.Bookmark);
 
-            Domain.Models.Anime anime = new Domain.Models.Anime
-            {
-                Id = request.AnimeId
-            };
 
-            bookmark.Animes.Remove(anime);
+            bookmark.Animes.Remove(request.AnimeId);
 
             await _context.SaveChangesAsync(cancellationToken);
 

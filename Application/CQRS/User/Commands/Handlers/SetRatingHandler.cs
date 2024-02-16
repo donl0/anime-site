@@ -25,18 +25,32 @@ namespace Application.CQRS.User.Commands.Handlers
 			if (user == null)
 				throw new NotFoundException(nameof(UserPath.User), request.UserId);
 
-			Rating rating = new Rating
-			{
-				User = user,
-				value = request.Rating,
-				Anime = request.AnimeId
-			};
-
-			await _context.Ratings.AddAsync(rating);
+			await ChangeOrAdd(_context, user, request.Rating, request.AnimeId);
 
 			await _context.SaveChangesAsync(cancellationToken);
 
 			return request.Rating;
         }
+
+		private async Task ChangeOrAdd(IAnimeDbContext context, UserPath.User user, int ratingSet, int animeId) {
+
+			Rating existRating = await _context.Ratings.FirstOrDefaultAsync(r => r.User == user & r.Anime == animeId);
+
+			if (existRating == null)
+			{
+				Rating rating = new Rating
+				{
+					User = user,
+					value = ratingSet,
+					Anime = animeId
+				};
+
+				await _context.Ratings.AddAsync(rating);
+			}
+			else
+			{
+				existRating.value = ratingSet;
+			}
+		}
 	}
 }

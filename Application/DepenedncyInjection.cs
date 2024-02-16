@@ -1,4 +1,6 @@
-﻿using Application.Models;
+﻿using Application.Mapper;
+using Application.Mapper.Mapster;
+using Application.Models;
 using Domain.Models.Shiki;
 using Domain.Models.User;
 using Mapster;
@@ -52,6 +54,7 @@ namespace Application
 
 			services.AddSingleton(config);
             services.AddScoped<IMapper, ServiceMapper>();
+            services.AddScoped<IAnimeMapper, AnimeMapperMapster>();
 
             return services;
         }

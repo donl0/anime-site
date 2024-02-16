@@ -12,6 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using UserPath = Domain.Models.User;
 using Application.Extensions;
+using Application.Mapper;
+using MapsterMapper;
 using Domain.Models.Shiki;
 
 namespace Application.CQRS.User.Queries.Handlers
@@ -20,11 +22,13 @@ namespace Application.CQRS.User.Queries.Handlers
 	{
 		private readonly IMediator _mediator;
 		private readonly IAnimeDbContext _context;
+		private readonly IAnimeMapper _mapper;
 
-		public GetAnimeWithIdWMHandler(IMediator mediator, IAnimeDbContext context)
+		public GetAnimeWithIdWMHandler(IMediator mediator, IAnimeDbContext context, IAnimeMapper mapper)
 		{
 			_mediator = mediator;
 			_context = context;
+			_mapper = mapper;
 		}
 
 		public async Task<AnimeFullVM> Handle(GetAnimeWithIdWMQuery request, CancellationToken cancellationToken)
@@ -42,9 +46,9 @@ namespace Application.CQRS.User.Queries.Handlers
 
 			List<Bookmark> bookmarks = await _context.Bookmarks.Where(b => b.User.Id == user.Id).ToListAsync();
 
-			animeWM = await FillWithUserRating(_context, user, request.AnimeId, animeWM);
+			Rating rating = await _context.Ratings.FirstOrDefaultAsync(r => r.User == user & r.Anime == request.AnimeId);
 
-			animeWM = animeWM.FillBookmarks(bookmarks, request.AnimeId);
+			animeWM = await _mapper.Map(user, request.AnimeId, animeDTO, bookmarks, rating);
 
 			return animeWM;
 		}
@@ -56,16 +60,6 @@ namespace Application.CQRS.User.Queries.Handlers
 			if (user == null)
 				throw new NotFoundException(nameof(UserPath.User), userId);
 			return user;
-		}
-
-		private async Task<AnimeFullVM> FillWithUserRating(IAnimeDbContext context, UserPath.User user, int animeId, AnimeFullVM animeWM) {
-			Rating rating = await _context.Ratings.FirstOrDefaultAsync(r => r.User == user & r.Anime == animeId);
-
-			if (rating != null) {
-				animeWM.UserRating = rating.value;
-			}
-
-			return animeWM;
 		}
 	}
 }
